@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Rapid-Media</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <link rel="stylesheet" href="/stylesheet/ud.css">
+    <script src="https://kit.fontawesome.com/ad3e65915b.js" crossorigin="anonymous"></script>
+</head>
+<body>
+    <div class="container">
+        <div class="form-box">
+            <div class="left">
+                <h1>Edit Your Content</h1>
+                <form action="/update/<%= post._id %>" method="POST">
+                    <div class="title-box">
+                        <label>:: Title ::</label><br>
+                        <textarea required maxlength="50" minlength="30" placeholder="Enter Title (max 50 & min 30 characters)" name="title"><%= post.title %> </textarea>
+                    </div>
+    
+                    <div class="description-box">
+                        <label>:: Description ::</label><br>
+                        <textarea required maxlength="80" minlength="60" placeholder="Enter Description (max 80 & min 90 characters)" name="description"><%= post.description %></textarea>
+                    </div>
+                    
+                   <div class="btn">
+                        <button type="submit" class="back">Back</button>
+                        <button type="submit" class="save">Save</button>
+                   </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

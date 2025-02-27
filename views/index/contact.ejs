@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Rapid-Media</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <link rel='stylesheet' type='text/css' media='screen' href='./stylesheet/contact.css'>
+    <script src="https://kit.fontawesome.com/ad3e65915b.js" crossorigin="anonymous"></script>
+</head>
+<body>
+    <nav>
+        <div>
+            <a href="/index" class="nav-link">Home</a>
+            &nbsp;&nbsp;&nbsp;&nbsp;    
+            <a href="/contact" class="nav-link active">Contact</a>
+            &nbsp;&nbsp;&nbsp;&nbsp;    
+            <a href="/mydata" class="nav-link ">My Data</a>
+        </div>
+        <div class="profile">
+            <% if (user && user.username) { %>
+                <span><%= user.username.charAt(0).toUpperCase() %></span>
+            <% } else { %>
+                <span>U</span> 
+            <% } %>
+            <a href="/logout" class="nav-link">Logout</a>
+        </div>
+    </nav>
+
+    <% if (post.length > 0) { %>
+        <% post.forEach(contact => { %>
+            <div class="container">
+                <div class="card">
+                    <div class="card-header">
+                        <h2><%= contact.username || "Unknown User" %></h2> 
+                        <form action="/delete-contact/<%= contact._id %>" method="POST" style="display:inline;">
+                            <button type="submit">Delete</button>
+                        </form>                    
+                    </div>
+                    <div class="card-data">
+                        <h4>
+                            <%= contact.posts && contact.posts.length > 0 ? contact.posts[0].title : "No Title Available" %>
+                        </h4>                    </div>
+                    <div class="card-footer">
+                        <h3><%= contact.phone || "N/A" %></h3> 
+                    </div>
+                </div>
+            </div>
+        <% }) %>
+    <% } else { %>
+        <p>No saved contacts found.</p>
+    <% } %>
+    
+<script>
+    document.querySelectorAll(".delete-contact").forEach(button => {
+        button.addEventListener("click", async (e) => {
+            const postId = button.dataset.postId;
+
+            try {
+                let response = await fetch(`/delete-contact/${postId}`, { method: "DELETE" });
+                let result = await response.json();
+
+                if (result.success) {
+                    alert("Contact removed successfully!");
+                    location.reload();
+                } else {
+                    alert(result.message);
+                }
+            } catch (error) {
+                console.error("Error:", error);
+                alert("Failed to delete contact.");
+            }
+        });
+    });
+</script>
+</body>
+</html>

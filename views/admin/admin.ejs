@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Rapid-Media</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <link rel='stylesheet' type='text/css' media='screen' href='/stylesheet/admin.css'>
+    <script src="https://kit.fontawesome.com/ad3e65915b.js" crossorigin="anonymous"></script>
+</head>
+<body>
+    <nav>
+        <div>
+            <a href="/admin/admin" class="nav-link active">Groups</a>
+            &nbsp;&nbsp;&nbsp;&nbsp;    
+            <a href="/admin/add_groups" class="nav-link">Add Groups</a>
+        </div>
+        <div class="profile"></div>
+            <a href="/alogout" class="nav-link">Logout</a>
+        </div>
+    </nav>
+
+    <% group_data.forEach(data => { %>
+    <div class="container">
+        <div class="card">
+            <div class="card-header">
+                <h2><%= data.username %></h2>
+                <form action="/delete-group/<%= data._id %>" method="POST" style="display:inline;">
+                    <button>Delete</button>
+                </form>
+            </div>
+            <div class="card-data">
+                <h4>Current Permission: <%= data.permission %></h4>
+            </div>
+            <div class="">
+                <form action="/faccess/<%= data._id %>" method="POST" style="display:inline;">
+                    <button class="card-footer-btn1">Full Acess</button>
+                </form>
+                <form action="/laccess/<%= data._id %>" method="POST" style="display:inline;">
+                    <button class="card-footer-btn2">Limited Acess</button>
+                </form>
+            </div>
+        </div>
+    </div>
+    <% }) %>
+</body>
+</html>

@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Rapid-Media</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <link rel='stylesheet' type='text/css' media='screen' href='./stylesheet/mydata.css'>
+    <script src="https://kit.fontawesome.com/ad3e65915b.js" crossorigin="anonymous"></script>
+</head>
+<body>
+    <nav>
+        <div>
+            <a href="/index" class="nav-link ">Home</a>
+            &nbsp;&nbsp;&nbsp;&nbsp;    
+            <a href="/contact" class="nav-link">Contact</a>
+            &nbsp;&nbsp;&nbsp;&nbsp;    
+            <a href="/mydata" class="nav-link active">My Data</a>
+        </div>
+        <div class="profile">
+            <% if (user && user.username) { %>
+                <span><%= user.username.charAt(0).toUpperCase() %></span>
+            <% } else { %>
+                <span>U</span> 
+            <% } %>
+            <a href="/logout" class="nav-link">Logout</a>
+        </div>
+    </nav>
+
+        <div class="container">
+            <% posts.forEach(post => { %>
+                <div class="card">
+                    <div class="card-header">
+                        <img src="../images/card1.jpeg">
+                    </div>
+                    <div class="card-body">
+                        <span>My Post</span>
+                        <h4><%= post.title %></h4>
+                        <p><%= post.description %></p>
+                    </div>
+                <div class="user">
+                        <% if (post && post.user.username) { %>
+                            <span><%= post.user.username.charAt(0).toUpperCase() %></span>
+                        <% } else { %>
+                            <span>U</span> 
+                        <% } %>
+                        <div class="user-info">
+                        <h5><%= post.user.username %></h5>
+                        <small>
+                            <%= new Intl.DateTimeFormat('en-US', { 
+                                 year: 'numeric', month: 'short', day: 'numeric', hour: '2-digit', minute: '2-digit' 
+                            }).format(new Date(post.createdAt)) %>
+                          </small>
+                    </div>
+                </div>
+                <div class="buttons">
+                    <form action="/edit/<%= post._id %>" method="POST" style="display:inline;">
+                        <button class="edit" type="submit">Edit</button>
+                    </form> 
+                    <button class="delete" onclick="deletePost('<%= post._id %>')">Delete</button>
+                </div>
+            </div>
+            <%})%>
+        </div>
+
+        <a href="/add">
+            <i class="fa-solid fa-circle-plus" id="add"></i>
+        </a>
+
+        <script>
+            function deletePost(postId) {
+                fetch(`/delete/${postId}`, { method: 'DELETE' })
+                    .then(response => {
+                        if (response.ok) {
+                            location.reload(); 
+                        } else {
+                            alert("Failed to delete post");
+                        }
+                    });
+            }
+        </script>
+</body>
+</html>

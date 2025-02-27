@@ -1,0 +1,199 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+body {
+    height: 100vh;
+    background-color: #f5f5f5;
+}
+
+nav{
+    background-color: white;
+    padding: 20px 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-weight: 900;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    z-index: 1000; 
+}
+
+.profile span{
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    margin-right: -10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgb(91, 197, 179);
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    font-size: 30px;
+    color: white;
+}
+
+.profile{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+.nav-link {
+    text-decoration: none;
+    color: black;
+    font-weight: bold;
+    padding: 5px 15px;
+    border-radius: 5px;
+    transition: 0.3s ease-in-out;
+}
+
+
+.nav-link.active {
+    padding: 18px;
+    border-radius: 10px;
+    background-color: rgb(121, 121, 201); 
+}
+
+.container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    padding: 80px 250px 50px 250px;
+    flex-wrap: wrap;
+    width: 100%;
+}
+
+.card{
+    margin: 10px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 2px 20px rgba(0, 0, 0, 0.2);
+    overflow: hidden;
+    width: 300px;
+}
+
+.card-body{
+    padding: 30px;
+}
+
+.card-body span{
+    background: green;
+    border-radius: 50px;
+    font-size: 12px;
+    margin: 0;
+    color: #fff;
+    padding: 2px 10px;
+    text-transform: uppercase;
+}
+
+.card-body h4{
+    padding: 20px 3px 10px;
+    overflow-wrap: anywhere;
+}
+
+.card-body p{
+    font-size: 13px;
+    padding: 10px 3px 0;
+    overflow-wrap: anywhere; 
+}
+.card-header img{
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+}
+
+.user{
+    display: flex;
+    padding: 20px;
+    align-items: center;
+}
+
+.user h5{
+    margin-right: 70px;
+}
+
+
+.edit{
+    background-color: rgb(99, 139, 54);
+    border-radius: 50px;
+    border: none;
+    cursor: pointer;
+    font-size: 15px;
+    font-weight: bold;
+    padding: 10px 20px;
+}
+
+.buttons{
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    padding: 15px;
+}
+
+.block{
+    margin-left: 0;
+    background-color: rgb(245, 79, 38);
+    border-radius: 50px;
+    border: none;
+    cursor: pointer;
+    font-size: 15px;
+    font-weight: bold;
+    padding: 10px;
+}
+
+.delete{
+    margin-left: 0;
+    background-color: rgb(224, 152, 100);
+    border-radius: 50px;
+    border: none;
+    cursor: pointer;
+    font-size: 15px;
+    font-weight: bold;
+    padding: 10px;
+}
+
+
+
+.user button{
+    background-color: rgb(224, 152, 100);
+    border-radius: 50px;
+    border: none;
+    cursor: pointer;
+    font-size: 15px;
+    font-weight: bold;
+    padding: 10px 20px;
+
+}
+
+.user span{
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    margin-right: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgb(91, 137, 197);
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    font-size: 30px;
+    color: white;
+}
+
+#add {
+    position: fixed;
+    bottom: 40px;
+    left: 92%;
+    color: green;
+    font-size: 100px;
+    border-radius: 100px;
+    cursor: pointer;
+}

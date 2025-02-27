@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Rapid-Media</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <link rel='stylesheet' type='text/css' media='screen' href="./stylesheet/index.css">
+    <script src="https://kit.fontawesome.com/ad3e65915b.js" crossorigin="anonymous"></script>
+</head>
+<body>
+    <nav>
+        <div>
+            <a href="/index" class="nav-link active">Home</a>
+            &nbsp;&nbsp;&nbsp;&nbsp;    
+            <a href="/contact" class="nav-link">Contact</a>
+            &nbsp;&nbsp;&nbsp;&nbsp;    
+            <a href="/mydata" class="nav-link ">My Data</a>
+        </div>
+        <div class="profile">
+            <% if (user && user.username) { %>
+                <span><%= user.username.charAt(0).toUpperCase() %></span>
+            <% } else { %>
+                <span>U</span> 
+            <% } %>
+            <a href="logout" class="nav-link">Logout</a>
+        </div>
+    </nav>
+
+        <div class="container">
+            <% posts.forEach(post => { %>
+                <div class="card">
+                    <div class="card-header">
+                        <img src="./images/card1.jpeg">
+                    </div>
+                    <div class="card-body">
+                        <span>New-User</span>
+                        <h4><%= post.title %></h4>
+                        <p><%= post.description %></p> 
+                    </div>
+                    
+                    <div class="user">
+                        <% if (post && post.user.username) { %>
+                            <span><%= post.user.username.charAt(0).toUpperCase() %></span>
+                        <% } else { %>
+                            <span>U</span> 
+                        <% } %>
+                        <div class="user-info">
+                            <h5>
+                                <% if (post.user) { %>
+                                  <%= post.user.username %>
+                                <% } else { %>
+                                  Admin
+                                <% } %>
+                              </h5>
+                              <small>
+                                <%= new Intl.DateTimeFormat('en-US', { 
+                                     year: 'numeric', month: 'short', day: 'numeric', hour: '2-digit', minute: '2-digit' 
+                                }).format(new Date(post.createdAt)) %>
+                              </small>
+                        </div>
+                        <form class="add-contact-form" data-user-id="<%= post.user ? post.user._id : '' %>">
+                            <button type="submit" class="add-contact-btn">Add</button>
+                        </form>
+                    </div>
+                </div>
+            <% }) %>
+        </div>
+
+        <a href="/add">
+            <i class="fa-solid fa-circle-plus" id="add"></i>
+        </a>
+
+        <script>
+            document.querySelectorAll(".add-contact-form").forEach(form => {
+                form.addEventListener("submit", async (e) => {
+                    e.preventDefault();
+                    const userId = form.dataset.userId;
+        
+                    try {
+                        let response = await fetch("/add-contact", {
+                            method: "POST",
+                            headers: { "Content-Type": "application/json" },
+                            body: JSON.stringify({ userId }),
+                        });
+        
+                        let result = await response.json();
+                        if (result.success) {
+                            alert("User saved to contacts!");
+                        } else {
+                            alert(result.message);
+                        }
+                    } catch (error) {
+                        console.error("Error:", error);
+                        alert("Failed to save contact.");
+                    }
+                });
+            });
+        </script>
+        
+</body>
+</html>

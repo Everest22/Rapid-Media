@@ -1,0 +1,117 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+body {
+    height: 100vh;
+    background-color: #f5f5f5;
+}
+
+nav{
+    background-color: white;
+    padding: 20px 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-weight: 900;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+}
+
+.profile span{
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    margin-right: -10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgb(91, 197, 179);
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    font-size: 30px;
+    color: white;
+}
+
+.profile{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+.nav-link {
+    text-decoration: none;
+    color: black;
+    font-weight: bold;
+    padding: 5px 15px;
+    border-radius: 5px;
+    transition: 0.3s ease-in-out;
+}
+
+
+.nav-link.active {
+    padding: 18px;
+    border-radius: 10px;
+    background-color: rgb(121, 121, 201); 
+}
+
+.container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 150px 250px 0 250px;
+    width: 100%;
+}
+
+.card{
+    border: solid 2px black;
+    width: 100%;
+    background-color: white;
+    padding: 20px;
+    margin: -30px;
+    border-radius: 20px;
+}
+
+.card-header{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.card-footer{
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+}
+
+.card-footer h3{
+    margin-top: 10px;
+}
+
+.card-header button{
+    margin-left: 80px;
+    background-color: rgb(240, 95, 38);
+    border-radius: 50px;
+    color: white;
+    border: none;
+    cursor: pointer;
+    font-size: 15px;
+    font-weight: bold;
+    padding: 10px 20px;
+}
+
+.card-header h2{
+    font-family: Georgia, 'Times New Roman', Times, serif;
+}
+
+.card-data h4{
+    font-size: 13px;
+    padding: 10px;
+}
