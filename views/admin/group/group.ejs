@@ -67,7 +67,12 @@
                             </form>
                             <button class="delete" onclick="deletePost('<%= post._id %>')">Delete</button> 
                         <% } else { %>
-                            <button class="delete" onclick="deletePost('<%= post._id %>')">Delete</button> 
+                            <form action="/group_block/<%= post._id %>" method="POST" style="display:inline;">
+                                <button class="block"><%= post.user.permission === 'normal' ? 'block' : 'unblock' %></button>
+                            </form>
+                            <form action="/group_visibility/<%= post._id %>" method="POST" style="display:inline;">
+                                <button class="edit"><%= post.visibility === 'public' ? 'Restrict' : 'Public' %></button>
+                            </form>
                         <% } %>
                     </div>
                 </div>
