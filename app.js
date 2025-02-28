@@ -42,8 +42,9 @@ app.get("/index", isLoggedIn, async(req,res)=>{
         .populate("user");
     posts = posts.filter(post => post.user && post.user.permission !== "block");
     let user = await userModel.findById(req.user._id);
-    
+    if(user.permission === "block") return res.redirect("/logout")
     res.render("index/index",{posts,user});
+    
 })
 
 app.get("/contact", isLoggedIn, async (req, res) => {
