@@ -1,0 +1,47 @@
+version: "3.8"
+
+services:
+  mongodb:
+    image: mongo:latest
+    container_name: my_mongo
+    ports:
+      - "27017:27017"
+    volumes:
+      - Rapid-Media:/data/db
+    networks:
+      - Rapid-Media
+    restart: always
+    healthcheck:
+      test: ["CMD", "mongosh", "--eval", "db.runCommand('ping').ok"]
+      interval: 10s
+      timeout: 5s
+      retries: 3
+
+  node-app:
+    build:
+      context: .
+    container_name: rapid_media_container
+    ports: 
+      - "5000:7777"
+    restart: always
+    environment:
+       - MONGO_URI=mongodb://mongodb:27017/Rapid-Media
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:5000/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 10s
+    networks:
+       - Rapid-Media
+    depends_on:
+       mongodb:
+        condition: service_healthy
+    
+volumes:
+  Rapid-Media:
+
+networks:
+  Rapid-Media:
+    driver: bridge
+
