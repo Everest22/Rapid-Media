@@ -22,8 +22,10 @@ services:
       context: .
     container_name: rapid_media_container
     ports: 
-      - "5000:7777"
+      - "5000:5000"
     restart: always
+    env_file:
+      - .env
     environment:
        - MONGO_URI=mongodb://mongodb:27017/Rapid-Media
     healthcheck:
@@ -37,11 +39,10 @@ services:
     depends_on:
        mongodb:
         condition: service_healthy
-    
+
 volumes:
   Rapid-Media:
 
 networks:
   Rapid-Media:
     driver: bridge
-
